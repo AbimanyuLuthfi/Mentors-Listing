@@ -29,20 +29,18 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+//  Login
+$routes->get('/auth', 'AuthController::index');
+
+// User
 $routes->get('/', 'Admin\DashboardController::index');
 
-// Routes Admin Dashboard
-$routes->get('/dashboard', 'Admin\DashboardController::index');
-
-// Routes Admin Produk
-$routes->get('/produk', 'Admin\ProdukController::index');
-
-// Routes Admin kategori
-$routes->get('/kategori', 'Admin\ProdukController::kategori');
+// Admin
+$routes->get('/admin/dashboard', 'Admin\DashboardController::index');
 
 
 // Mentors
-$routes->get('/mentors', 'Mentors\MentorsController::index');
+$routes->get('/mentors/dashboard', 'Mentors\MentorsController::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
