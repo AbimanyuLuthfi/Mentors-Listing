@@ -42,6 +42,7 @@ $routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listi
 $routes->post('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
 $routes->get('/admin/add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
 $routes->post('/admin/create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors URL
+$routes->get('/admin/update/post/(:any)', 'Admin\DashboardController::admin_mentors_listing_update_index/$1'); // Update Mentors Information View Page
 $routes->post('/admin/(:any)/update/post', 'Admin\DashboardController::admin_mentors_listing_update/$1'); // Update Mentors Information
 $routes->get('/admin/(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // Delete Mentors
 

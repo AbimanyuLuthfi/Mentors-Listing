@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\MentorsModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 
 class DashboardController extends BaseController
 {
@@ -24,7 +25,7 @@ class DashboardController extends BaseController
 
     /**
      * GET : /admin/add/mentors
-     * Function Add Mentors for Admin
+     * Function View Add Mentors for Admin
      */
     public function admin_mentors_listing_create_index()
     {
@@ -33,6 +34,23 @@ class DashboardController extends BaseController
             'head' => 'Add Mentors',
         ];
         return view('admin/dashboard/add-mentors', $viewData);
+    }
+
+    /**
+     * GET : /admin/add/mentors
+     * Function View Add Mentors for Admin
+     */
+    public function admin_mentors_listing_update_index($mentors_uuid)
+    {
+        $mentorsModel = new MentorsModel();
+        $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
+        
+        $viewData = [
+            'title' => 'Update Mentors',
+            'head' => 'Update Mentors Information',
+            'mentors' => $getItems,
+        ];
+        return view('admin/dashboard/edit-mentors', $viewData);
     }
 
     /**
@@ -76,33 +94,35 @@ class DashboardController extends BaseController
      * Function Update Mentors
      */
     public function	admin_mentors_listing_update($mentors_uuid) {
+        $gambar = $this->request->getFile('gambar');
+        $nama = $this->request->getFile('nama');
+        $bidang_keahlian = $this->request->getFile('bidang_keahlian');
+        $deskripsi_profil = $this->request->getFile('deskripsi_profil');
+        $waktu_tersedia = $this->request->getFile('waktu_tersedia');
+        
         $mentorsModel = new MentorsModel();
         $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
-
-        $gambar = $this->request->getFile('gambar');
-        $imageName = '';
-    
         if(!empty($getItems)) {
-            
-            if($gambar->isValid() && !$gambar->hasMoved())
-            {
-                $old_img_name = $getItems ['gambar'];
-                if(is_file("/uploads/".$old_img_name))
-                {
-                    unlink("uploads/".$old_img_name);
-                }
+            $updateMentors =[
+                'nama' => $nama,
+                'bidang_keahlian' => $bidang_keahlian,
+                'deskripsi_profil' => $deskripsi_profil,
+                'waktu_tersedia' => $waktu_tersedia,
+            ];
+
+            if($gambar->isValid() && !$gambar->hasMoved()) {
+                $old_img_name = $getItems['gambar'];
+                    if(is_file("/uploads/".$old_img_name))
+                    {
+                        unlink("uploads/".$old_img_name);
+                    }
                 $imageName = $gambar->getRandomName();
                 $gambar->move('uploads/', $imageName);
+                $updateMentors['gambar'] = $imageName;
             }
 
             
-            $mentorsModel->where('uuid', $mentors_uuid)->set([
-                'image' => $imageName,
-                'nama' => $this->request->getVar('nama'),
-                'bidang_keahlian' => $this->request->getVar('bidang_keahlian'),
-                'deskripsi_profil' => $this->request->getVar('deskripsi_profil'),
-                'waktu_tersedia' => $this->request->getVar('waktu_tersedia'),
-                ])->update();
+            $mentorsModel->where('uuid', $mentors_uuid)->set($updateMentors)->update();
             return redirect()->to('/admin/dashboard')->with('success', 'Berhasil update item');
         } else {
             return redirect()->to('/admin/dashboard')->with('errors', 'Gagal update item');
@@ -123,4 +143,8 @@ class DashboardController extends BaseController
         else return redirect()->back()->with('error', 'Gagal Menghapus Data Mentor');
     }
 
+    public function edit($id){
+        $mentorsModel = new MentorsModel();
+        return json_encode($this->$mentorsModel->find($id));
+    }
 }
