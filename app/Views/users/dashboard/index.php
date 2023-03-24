@@ -39,7 +39,7 @@
                                                 <td>
                                                     <a 
                                                         type="button"
-                                                        href=""
+                                                        href="/auth/login"
                                                         class="btn btn-info">
                                                             Detail
                                                     </a>
