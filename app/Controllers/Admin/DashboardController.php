@@ -51,7 +51,7 @@ class DashboardController extends BaseController
         if($gambar ->isValid() && ! $gambar->hasMoved())
         {
             $imageName = $gambar->getRandomName();
-            $gambar->move('uploads/', $imageName);
+            $gambar->move(WRITEPATH.'uploads/', $imageName);
         }
 
         $mentorsModel = new MentorsModel();
