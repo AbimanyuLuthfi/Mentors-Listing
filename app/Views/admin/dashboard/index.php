@@ -56,51 +56,28 @@
                                     <thead>
                                         <tr>
                                             <th>Profile Picture</th>
+                                            <th>Nama</th>
                                             <th>Bidang Keahlian</th>
                                             <th>Deskripsi Profile</th>
                                             <th>Hari & Waktu Tersedia</th>
                                             <th>Information</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Profile Picture</th>
-                                            <th>Bidang Keahlian</th>
-                                            <th>Deskripsi Profile</th>
-                                            <th>Hari & Waktu Tersedia</th>
-                                            <th>Information</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
+                                    <?php if(!empty($array_mentors)): ?>
+                                    <?php $count=1; foreach($array_mentors as $data): ?>
+                                            <td><?= $data['gambar']; ?></td>
+                                            <td><?= $data['nama'] ?></td>
+                                            <td><?= $data['bidang_keahlian'] ?></td>
+                                            <td><?= $data['deskripsi_profil'] ?></td>
+                                            <td><?= $data['waktu_tersedia'] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary">Edit</button>
                                                 <button type="button" class="btn btn-danger">Delete</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary">Edit</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>
-                                                <button type="button" class="btn btn-primary">Edit</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
+                                    <?php endforeach; ?>
+                                    <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -10,4 +10,8 @@ class AuthController extends BaseController
     {
         return view('login');
     }
+
+    public function authentication(){
+        echo("lanjut login cuy");
+    }
 }

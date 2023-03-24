@@ -31,12 +31,14 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 //  Login
 $routes->get('/auth', 'AuthController::index');
+$routes->post('/auth/process', 'AuthController::authentication');
 
 // User
 $routes->get('/', 'Admin\DashboardController::index');
 
 // Admin
-$routes->get('/admin/dashboard', 'Admin\DashboardController::index');
+$routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
+$routes->post('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
 
 
 // Mentors
