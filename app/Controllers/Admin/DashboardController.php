@@ -7,28 +7,29 @@ use App\Models\MentorsModel;
 
 class DashboardController extends BaseController
 {
-    // public function index()
-    // {
-    //     $data = [
-    //         'title' => 'Admin Dashboard | Comprof'
-    //     ];
-    //     return view('/admin/dashboard/index', $data);
-    // }
+    /**
+     * GET : /admin/dashboard
+     * Function Read Admin
+     */
     public function admin_mentors_listing_index()
     {
         $mentorsModel = new MentorsModel();
         $getItems = $mentorsModel->getAllItem();
         $viewData = [
-            'title' => 'Admin Dashboard | Comprof',
+            'title' => 'Admin Dashboard',
             'array_mentors' => $getItems,
         ];
         return view('admin/dashboard/index', $viewData);
     }
 
+    /**
+     * GET : /admin/add/mentors
+     * Function Add Mentors for Admin
+     */
     public function admin_mentors_listing_create_index()
     {
         $viewData = [
-            'title' => 'Add Mentors | Comprof',
+            'title' => 'Add Mentors',
             'head' => 'Add Mentors',
         ];
         return view('admin/dashboard/add-mentors', $viewData);
@@ -71,7 +72,45 @@ class DashboardController extends BaseController
     }
 
     /**
-     * DELETE : /admin/create/mentors/post
+     * GET : /admin/(:any)/update/post
+     * Function Update Mentors
+     */
+    public function	admin_mentors_listing_update($mentors_uuid) {
+        $mentorsModel = new MentorsModel();
+        $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
+
+        $gambar = $this->request->getFile('gambar');
+        $imageName = '';
+    
+        if(!empty($getItems)) {
+            
+            if($gambar->isValid() && !$gambar->hasMoved())
+            {
+                $old_img_name = $getItems ['gambar'];
+                if(is_file("/uploads/".$old_img_name))
+                {
+                    unlink("uploads/".$old_img_name);
+                }
+                $imageName = $gambar->getRandomName();
+                $gambar->move('uploads/', $imageName);
+            }
+
+            
+            $mentorsModel->where('uuid', $mentors_uuid)->set([
+                'image' => $imageName,
+                'nama' => $this->request->getVar('nama'),
+                'bidang_keahlian' => $this->request->getVar('bidang_keahlian'),
+                'deskripsi_profil' => $this->request->getVar('deskripsi_profil'),
+                'waktu_tersedia' => $this->request->getVar('waktu_tersedia'),
+                ])->update();
+            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil update item');
+        } else {
+            return redirect()->to('/admin/dashboard')->with('errors', 'Gagal update item');
+        }
+    }
+
+    /**
+     * DELETE : /admin/(:any)/delete
      * Function Create Mentors
      */
     public function admin_mentors_listing_delete($mentors_uuid){
@@ -83,4 +122,5 @@ class DashboardController extends BaseController
         }
         else return redirect()->back()->with('error', 'Gagal Menghapus Data Mentor');
     }
+
 }

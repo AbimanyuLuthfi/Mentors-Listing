@@ -34,14 +34,15 @@ $routes->get('/auth', 'AuthController::index');
 $routes->post('/auth/process', 'AuthController::authentication');
 
 // User
-$routes->get('/', 'Admin\DashboardController::index');
+$routes->get('/', 'Users\DashboardController::users_mentors_listing_index');
 
 // Admin
 $routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
 $routes->post('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
-$routes->get('/admin/add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors Page
-$routes->post('/admin/create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors Page
-$routes->get('/admin/(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // $experts_uuid
+$routes->get('/admin/add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
+$routes->post('/admin/create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors URL
+$routes->post('/admin/(:any)/update/post', 'Admin\DashboardController::admin_mentors_listing_update/$1'); // Update Mentors Information
+$routes->get('/admin/(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // Delete Mentors
 
 
 // Mentors
