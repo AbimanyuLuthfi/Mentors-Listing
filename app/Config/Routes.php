@@ -39,6 +39,9 @@ $routes->get('/', 'Admin\DashboardController::index');
 // Admin
 $routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
 $routes->post('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
+$routes->get('/admin/add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors Page
+$routes->post('/admin/create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors Page
+$routes->get('/admin/(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // $experts_uuid
 
 
 // Mentors

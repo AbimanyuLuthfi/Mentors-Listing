@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Ramsey\Uuid\Uuid;
 
 class MentorsModel extends Model
 {
@@ -54,6 +55,29 @@ class MentorsModel extends Model
         return $this->findAll();
     }
 
-    
+    public function createItem($array_mentors) {
+        $uuid4 = Uuid::uuid4();
+        $generateUUID = $uuid4;
+        $data = [
+            'uuid' => $generateUUID,
+            'gambar' => $array_mentors['gambar'],
+            'nama' => $array_mentors['nama'],
+            'bidang_keahlian' => $array_mentors['bidang_keahlian'],
+            'deskripsi_profil' => $array_mentors['deskripsi_profil'],
+            'waktu_tersedia' => $array_mentors['waktu_tersedia'],
+        ];
+        $this->save($data);
+        return $this->getInsertID();
+    }
+
+
+    // Function Delete Items Experts
+    public function deleteItem($mentors_uuid) {
+        $getItem = $this->where('uuid', $mentors_uuid)->first();
+        if (!empty($getItem)) {
+            $this->where('uuid', $mentors_uuid)->delete();
+            return true;
+        } else return false;
+    }
 
 }

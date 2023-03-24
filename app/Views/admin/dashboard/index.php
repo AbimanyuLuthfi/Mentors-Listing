@@ -49,7 +49,7 @@
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
                                 All Mentors Information
-                                <button type="button" class="btn btn-info">Add</button>
+                                <a type="button" href="/admin/add/mentors" class="btn btn-info">Add</a>
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -73,7 +73,12 @@
                                             <td><?= $data['waktu_tersedia'] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-primary">Edit</button>
-                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                <a 
+                                                    type="button"
+                                                    href="/admin/<?= esc($data['uuid'])?>/delete"
+                                                    class="btn btn-danger">
+                                                        Delete
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
