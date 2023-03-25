@@ -1,59 +1,52 @@
     <?= $this->extend('mentors/layout/template'); ?>
     <?= $this->section('content'); ?>
 
-            <div id="layoutSidenav_content">
+    <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Mentors Dashboard</h1>
+                        <h1 class="mt-4">Dashboard</h1>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">Mentors Information</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-header">
+                            <div class="card-header bg-primary text-white">
                                 <i class="fas fa-table me-1"></i>
                                 Mentors Information
                             </div>
                             <div class="card-body">
-                                <table id="datatablesSimple">
+                            <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>Profile Picture</th>
+                                            <th>Nama</th>
                                             <th>Bidang Keahlian</th>
                                             <th>Deskripsi Profile</th>
                                             <th>Hari & Waktu Tersedia</th>
                                             <th>Information</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Profile Picture</th>
-                                            <th>Bidang Keahlian</th>
-                                            <th>Deskripsi Profile</th>
-                                            <th>Hari & Waktu Tersedia</th>
-                                            <th>Information</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
-                                            <td>Shad Decker</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                            <td><button type="button" class="btn btn-primary">Detail</button></td>
+                                        <?php if(!empty($array_mentors)): ?>
+                                        <?php $count=1; foreach($array_mentors as $data): ?>
+                                        <tr> 
+                                                <td>
+                                                    <img src="<?= "/uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar">
+                                                </td>
+                                                <td><?= $data['nama'] ?></td>
+                                                <td><?= $data['bidang_keahlian'] ?></td>
+                                                <td><?= $data['deskripsi_profil'] ?></td>
+                                                <td><?= $data['waktu_tersedia'] ?></td>
+                                                <td>
+                                                    <a 
+                                                        type="button"
+                                                        href="/users/detail/mentors/<?= esc($data['uuid'])?>"
+                                                        class="btn btn-info">
+                                                            Detail
+                                                    </a>
+                                                </td>
                                         </tr>
-                                        <tr>
-                                            <td>Michael Bruce</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                            <td><button type="button" class="btn btn-primary">Detail</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td><button type="button" class="btn btn-primary">Detail</button></td>
-                                        </tr>
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
