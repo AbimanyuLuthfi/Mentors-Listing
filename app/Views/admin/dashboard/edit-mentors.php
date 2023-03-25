@@ -35,6 +35,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-warning">Submit</button>
+                            <a href="/admin/dashboard" class="btn btn-primary">Back</a>
                         </div>
                     </form>
                 </div>
