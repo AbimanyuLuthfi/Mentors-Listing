@@ -69,7 +69,7 @@ class DashboardController extends BaseController
         if($gambar ->isValid() && ! $gambar->hasMoved())
         {
             $imageName = $gambar->getRandomName();
-            $gambar->move(WRITEPATH.'uploads/', $imageName);
+            $gambar->move('uploads/', $imageName);
         }
 
         $mentorsModel = new MentorsModel();
@@ -83,9 +83,9 @@ class DashboardController extends BaseController
         ]);
 
         if (!empty($array_mentors['uuid'])) {
-            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil input barang');
+            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil Menambah Data');
         } else {
-            return redirect()->to('/admin/dashboard')->with('message', 'Gagal input barang');
+            return redirect()->to('/admin/dashboard')->with('message', 'Gagal Menambah Data');
         }
     }
 
@@ -95,10 +95,10 @@ class DashboardController extends BaseController
      */
     public function	admin_mentors_listing_update($mentors_uuid) {
         $gambar = $this->request->getFile('gambar');
-        $nama = $this->request->getFile('nama');
-        $bidang_keahlian = $this->request->getFile('bidang_keahlian');
-        $deskripsi_profil = $this->request->getFile('deskripsi_profil');
-        $waktu_tersedia = $this->request->getFile('waktu_tersedia');
+        $nama = $this->request->getVar('nama');
+        $bidang_keahlian = $this->request->getVar('bidang_keahlian');
+        $deskripsi_profil = $this->request->getVar('deskripsi_profil');
+        $waktu_tersedia = $this->request->getVar('waktu_tersedia');
         
         $mentorsModel = new MentorsModel();
         $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();

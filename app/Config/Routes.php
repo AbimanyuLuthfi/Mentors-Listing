@@ -35,7 +35,7 @@ $routes->post('/auth/process', 'AuthController::authentication');
 $routes->get('/auth/register', 'AuthController::register_index'); // register Page
 
 // User
-$routes->get('/', 'Users\DashboardController::users_mentors_listing_index');
+$routes->get('/users/dashboard', 'Users\DashboardController::users_mentors_listing_index');
 
 // Admin
 $routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index');

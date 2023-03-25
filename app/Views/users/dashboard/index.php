@@ -30,7 +30,7 @@
                                         <?php $count=1; foreach($array_mentors as $data): ?>
                                         <tr> 
                                                 <td>
-                                                    <img src="<?= "uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar">
+                                                    <img src="<?= "/uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar">
                                                 </td>
                                                 <td><?= $data['nama'] ?></td>
                                                 <td><?= $data['bidang_keahlian'] ?></td>

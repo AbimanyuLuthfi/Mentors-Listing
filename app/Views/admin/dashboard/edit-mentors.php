@@ -4,7 +4,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">test</h1>
+            <h1 class="mt-4"><?= $head; ?></h1>
             <br>
             <div class="card mb-4">
                 <div class="card-header bg-warning">
