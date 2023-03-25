@@ -29,26 +29,37 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-//  Login
-$routes->get('/auth/login', 'AuthController::login_index'); // login Page
-$routes->post('/auth/process', 'AuthController::authentication');
-$routes->get('/auth/register', 'AuthController::register_index'); // register Page
+//  Authentication
+$routes->group('auth', static function($routes){
+    $routes->get('login', 'AuthController::login_index'); // login Page
+    $routes->post('process', 'AuthController::authentication');
+    $routes->get('register', 'AuthController::register_index'); // register Page
+});
+
 
 // User
-$routes->get('/users/dashboard', 'Users\DashboardController::users_mentors_listing_index');
+$routes->group('users', static function($routes){
+    $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
+});
+
 
 // Admin
-$routes->get('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
-$routes->post('/admin/dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
-$routes->get('/admin/add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
-$routes->post('/admin/create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors URL
-$routes->get('/admin/update/post/(:any)', 'Admin\DashboardController::admin_mentors_listing_update_index/$1'); // Update Mentors Information View Page
-$routes->post('/admin/(:any)/update/post', 'Admin\DashboardController::admin_mentors_listing_update/$1'); // Update Mentors Information
-$routes->get('/admin/(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // Delete Mentors
+$routes->group('admin', static function($routes){
+    $routes->get('dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
+    $routes->post('dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
+    $routes->get('add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
+    $routes->post('create/mentors/post', 'Admin\DashboardController::admin_mentors_listing_create'); // Add Mentors URL
+    $routes->get('update/post/(:any)', 'Admin\DashboardController::admin_mentors_listing_update_index/$1'); // Update Mentors Information View Page
+    $routes->post('(:any)/update/post', 'Admin\DashboardController::admin_mentors_listing_update/$1'); // Update Mentors Information
+    $routes->get('(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // Delete Mentors
+});
+
 
 
 // Mentors
-$routes->get('/mentors/dashboard', 'Mentors\MentorsController::index');
+$routes->group('mentors', static function($routes){
+    $routes->get('dashboard', 'Mentors\MentorsController::index');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
