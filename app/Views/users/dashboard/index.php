@@ -39,7 +39,7 @@
                                                 <td>
                                                     <a 
                                                         type="button"
-                                                        href="/auth/login"
+                                                        href="/users/detail/mentors/<?= esc($data['uuid'])?>"
                                                         class="btn btn-info">
                                                             Detail
                                                     </a>

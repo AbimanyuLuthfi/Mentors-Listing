@@ -40,6 +40,7 @@ $routes->group('auth', static function($routes){
 // User
 $routes->group('users', static function($routes){
     $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
+    $routes->get('detail/mentors/(:any)', 'Users\DashboardController::users_mentors_listing_detail_index/$1');
 });
 
 
