@@ -11,8 +11,12 @@ class Mentorslisting extends Migration
         $this->forge->addField([
             'id' => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => true],
             'uuid' => ['type' => 'VARCHAR', 'constraint' => 128],
+
+            //Login/Register
             'username' => ['type' => 'VARCHAR','constraint' => 64,],
             'password' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
+
+            //Items
             'gambar' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
             'nama' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
             'bidang_keahlian' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],

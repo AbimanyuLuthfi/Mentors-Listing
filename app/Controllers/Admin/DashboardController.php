@@ -32,6 +32,7 @@ class DashboardController extends BaseController
         $viewData = [
             'title' => 'Add Mentors',
             'head' => 'Add Mentors',
+            'validation' => \Config\Services::validation(),
         ];
         return view('admin/dashboard/add-mentors', $viewData);
     }
@@ -65,6 +66,18 @@ class DashboardController extends BaseController
         $bidang_keahlian = $this->request->getVar('bidang_keahlian');
         $deskripsi_profil = $this->request->getVar('deskripsi_profil');
         $waktu_tersedia = $this->request->getVar('waktu_tersedia');
+
+        // Validasi
+        if(!$this->validate([
+            'gambar' => 'uploaded[gambar]|max_size[gambar,2048]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
+            'nama' => 'required|is_unique[mentors.nama]',
+            'bidang_keahlian' => 'required',
+            'deskripsi_profil' => 'required',
+            'waktu_tersedia' => 'required',
+        ])){
+            $validation = \Config\Services::validation();
+            return redirect()->to('/admin/add/mentors')->withInput()->with('validation', 'mnbbhghjg');
+        }
         
         if($gambar ->isValid() && ! $gambar->hasMoved())
         {
@@ -138,9 +151,9 @@ class DashboardController extends BaseController
         $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
         if(!empty($getItems)){
             $mentorsModel->where('uuid', $mentors_uuid)->delete();
-            return redirect()->back()->with('success', 'Berhasil Menghapus Data Mentor');
+            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil Menghapus Data');
         }
-        else return redirect()->back()->with('error', 'Gagal Menghapus Data Mentor');
+        else return redirect()->to('/admin/dashboard')->with('success', 'Gagal Menghapus Data');
     }
 
     public function edit($id){

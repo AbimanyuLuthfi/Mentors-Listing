@@ -24,16 +24,9 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form method="POST" action="/admin/dashboard" class="needs-validation" novalidate="">
         <?= csrf_field() ?>
-            <!-- Nama input -->
-            <div class="form-outline mb-4">
-                <input type="text" name="nama"  id="nama" class="form-control form-control-lg" tabindex="1" required autofocus
-                placeholder="Input Name" />
-                <label class="form-label" for="nama">Name</label>
-            </div>
-
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <input type="email" name="email"  id="email" class="form-control form-control-lg" tabindex="1" required autofocus
+                <input type="email" name="username"  id="email" class="form-control form-control-lg" tabindex="1" required autofocus
                 placeholder="Input email address" />
                 <label class="form-label" for="email">Email address</label>
             </div>
@@ -43,6 +36,13 @@
                 <input type="password" id="form3Example4" class="form-control form-control-lg"
                 placeholder="Input password" />
                 <label class="form-label" for="form3Example4">Password</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+                <input type="password" id="form3Example4" class="form-control form-control-lg"
+                placeholder="Confirm password" />
+                <label class="form-label" for="form3Example4">Confirm Password</label>
             </div>
 
             <div class="text-center text-lg-start mt-4 pt-2">

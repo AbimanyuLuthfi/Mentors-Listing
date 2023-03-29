@@ -12,6 +12,7 @@
                                 Fill The Mentors Information
                             </div>
                             <div class="card-body">
+                            <?= $validation->listErrors(); ?>
                                 <form action="/admin/create/mentors/post" accept-charset="utf-8" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
                                         <label for="gambar">Foto Profile</label>
