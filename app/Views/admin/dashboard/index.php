@@ -105,6 +105,8 @@
                                 <th>Nama</th>
                                 <th>Role</th>
                                 <th>Email</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -116,6 +118,8 @@
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= $data['role'] ?></td>
                                     <td><?= $data['email'] ?></td>
+                                    <td><?= $data['created_at'] ?></td>
+                                    <td><?= $data['updated_at'] ?></td>
                                     <td>
                                     <a 
                                         type="button" class="btn btn-warning"
