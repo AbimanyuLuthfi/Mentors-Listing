@@ -114,7 +114,7 @@ class AuthController extends BaseController
 
         $auth = $mentorsModel->where('email', $email)->first();
 
-       if(!empty($auth)){
+       if(($auth)){
         if($auth['is_active'] == "active"){
             $pass = $auth['password'];
             $authenticatePassword = password_verify($password, $pass);
