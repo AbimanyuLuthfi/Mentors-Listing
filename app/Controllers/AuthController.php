@@ -11,9 +11,19 @@ class AuthController extends BaseController
     // public function __construct(){
     //     helper('form');
     // }
-    public function login_index()
+    public function login_view()
     {
         return view('login');
+    }
+    public function login_index()
+    {
+        $mentorsModel = new MentorsModel ();
+        $getItems = $mentorsModel->getAllItem();
+        $data = [
+            'array_items' => $getItems,
+            'title'=> 'Dashboard | Mentors Listing'
+        ];
+        return view('dashboard', $data);
     }
     public function register_index()
     {
@@ -71,7 +81,7 @@ class AuthController extends BaseController
                 'uuid' => $generateUUID,
                 'email'    => $email,
                 'password' => password_hash($password, PASSWORD_BCRYPT),
-                'role'     => 'member',
+                'role'     => 'user',
                 'is_active'     => 'not_active',
                 'gambar'     => '',
                 'nama'     => $nama,
@@ -85,6 +95,57 @@ class AuthController extends BaseController
             session()->setFlashdata('error', $this->validator->listerrors());
             return redirect()->to('/auth/register/index');
         }
+    }
+
+    public function validation_account() {
+        $session = session();   
+        $mentorsModel = new MentorsModel();
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+
+        $auth = $mentorsModel->where('email', $email)->first();
+
+       if(!empty($auth)){
+        if($auth['is_active'] == "active"){
+            $pass = $auth['password'];
+            $authenticatePassword = password_verify($password, $pass);
+            if($authenticatePassword == true){
+                $ses_data = [
+                    'id' => $auth['id'],
+                    'uuid' => $auth['uuid'],
+                    'email' => $auth['email'],
+                    'role' => $auth['role'],
+                    'is_active' => $auth['is_active'],
+                    'gambar' => $auth['gambar'],
+                    'nama' => $auth['nama'],
+                    'bidang_keahlian' => $auth['bidang_keahlian'],
+                    'deskripsi_profil' => $auth['deskripsi_profil'],
+                    'waktu_tersedia' => $auth['waktu_tersedia'],
+                    'isLoggedIn' => TRUE
+                ];
+                $session->set($ses_data);
+                return redirect()->to('/dashboard/index')->with('success', 'Berhasil Login');
+            } else {
+                $session->setFlashdata('msg', 'Password is incorrect.');
+                return redirect()->to('/auth/login/index')->withInput()->with('msg', 'Password Anda Salah');
+            }
+        } else {
+            $session->setFlashdata('msg', 'Email Anda Belum Aktif');
+            return redirect()->to('/auth/login/index')->with('msg', 'Email Anda Belum Aktif');
+        }
+       } else {
+        $session->setFlashdata('msg', 'Akun Tidak Ditemukan');
+        return redirect()->to('/auth/login/index')->with('msg', 'Akun Tidak Ditemukan');
+    }
+    }
+
+    /*
+     * GET : auth/logout/process
+     * Function Logout Process
+     */
+    public function logout_index(){
+        $this->session->destroy();
+        return redirect()->to('/auth/login/index');
     }
 
 }

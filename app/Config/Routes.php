@@ -32,20 +32,17 @@ $routes->set404Override();
 
 //  Authentication
 $routes->group('auth', static function($routes){
-    $routes->get('login/index', 'AuthController::login_index'); // login Page
+    $routes->get('login/index', 'AuthController::login_view'); // login Page
     $routes->get('register/index', 'AuthController::register_index'); // register Page
-    $routes->post('login/process', 'AuthController::'); // Login Process
+    $routes->post('login/process', 'AuthController::validation_account'); // Login Process
     $routes->post('register/process', 'AuthController::auth_account_create_post'); // register Process
-    $routes->get('logout/process', 'AuthController::'); // register Process
+    $routes->get('logout/process', 'AuthController::logout_index'); // register Process
 });
 
-
-// User
-$routes->group('users', static function($routes){
-    $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
-    $routes->get('detail/mentors/(:any)', 'Users\DashboardController::users_mentors_listing_detail_index/$1');
+// Dashboard
+$routes->group('dashboard', static function($routes){
+    $routes->get('index', 'AuthController::login_index'); // Dashboard Login Page
 });
-
 
 // Admin
 $routes->group('admin', static function($routes){
@@ -58,7 +55,11 @@ $routes->group('admin', static function($routes){
     $routes->get('(:any)/delete', 'Admin\DashboardController::admin_mentors_listing_delete/$1'); // Delete Mentors
 });
 
-
+// User
+$routes->group('users', static function($routes){
+    $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
+    $routes->get('detail/mentors/(:any)', 'Users\DashboardController::users_mentors_listing_detail_index/$1');
+});
 
 // Mentors
 $routes->group('mentors', static function($routes){
