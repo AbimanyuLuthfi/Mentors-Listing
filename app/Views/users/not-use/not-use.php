@@ -32,3 +32,30 @@
                                 </div>
                             </div>
     </div>
+
+
+    <?php if(!empty($array_items)): ?>
+        <?php $count=1; foreach($array_items as $data): ?>
+            <?php if($data['role'] != 'admin'): ?>
+                <?php if($data['role'] != 'user'): ?>
+                    <tr> 
+                            <td>
+                                <img src="<?= "/uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar">
+                            </td>
+                            <td><?= $data['nama'] ?></td>
+                            <td><?= $data['bidang_keahlian'] ?></td>
+                            <td><?= $data['deskripsi_profil'] ?></td>
+                            <td><?= $data['waktu_tersedia'] ?></td>
+                            <td>
+                                <a 
+                                    type="button"
+                                    href="/users/detail/mentors/<?= esc($data['uuid'])?>"
+                                    class="btn btn-info">
+                                        Detail
+                                </a>
+                            </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>

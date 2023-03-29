@@ -24,10 +24,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if(!empty($array_items)): ?>
-                            <?php $count=1; foreach($array_items as $data): ?>
-                                <?php if($data['role'] != 'admin'): ?>
-                                    <?php if($data['role'] != 'user'): ?>
+                        <?php if(!empty($data_mentor)): ?>
+                            <?php $count=1; foreach($data_mentor as $data): ?>
                                         <tr> 
                                                 <td>
                                                     <img src="<?= "/uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar">
@@ -45,8 +43,6 @@
                                                     </a>
                                                 </td>
                                         </tr>
-                                    <?php endif; ?>
-                                <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </tbody>

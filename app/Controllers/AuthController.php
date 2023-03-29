@@ -19,9 +19,18 @@ class AuthController extends BaseController
     {
         $mentorsModel = new MentorsModel ();
         $getItems = $mentorsModel->getAllItem();
+
+        $getMentor= $mentorsModel
+        ->where('role', 'mentor')
+        ->where('gambar !=', null)
+        ->where('bidang_keahlian !=', null)
+        ->where('deskripsi_profil !=', null)
+        ->where('waktu_tersedia !=', null)
+        ->findAll();
         $data = [
             'array_items' => $getItems,
-            'title'=> 'Dashboard | Mentors Listing'
+            'title'=> 'Dashboard | Mentors Listing',
+            'data_mentor' => $getMentor,
         ];
         return view('dashboard', $data);
     }
@@ -83,11 +92,11 @@ class AuthController extends BaseController
                 'password' => password_hash($password, PASSWORD_BCRYPT),
                 'role'     => 'user',
                 'is_active'     => 'not_active',
-                'gambar'     => '',
+                'gambar'     => NULL,
                 'nama'     => $nama,
-                'bidang_keahlian'     => '',
-                'deskripsi_profil'     => '',
-                'waktu_tersedia'     => '',
+                'bidang_keahlian'     => NULL,
+                'deskripsi_profil'     => NULL,
+                'waktu_tersedia'     => NULL,
             ];
             $mentorsModel->save($data);
             return redirect()->to('/auth/login/index')->with('success', 'Anda Berhasil Membuat Akun Baru');
