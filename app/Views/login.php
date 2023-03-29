@@ -33,20 +33,20 @@
 
           <!-- Password input -->
           <div class="form-outline mb-3">
-            <input type="password" id="form3Example4" class="form-control form-control-lg"
+            <input type="password" name="password" id="form3Example4" class="form-control form-control-lg"
               placeholder="Enter password" />
             <label class="form-label" for="form3Example4">Password</label>
           </div>
 
-          <div class="d-flex justify-content-between align-items-center">
+          <!-- <div class="d-flex justify-content-between align-items-center"> -->
             <!-- Checkbox -->
-            <a href="#!" class="text-body">Forgot password?</a>
-          </div>
+            <!-- <a href="#!" class="text-body">Forgot password?</a>
+          </div> -->
 
           <div class="text-center text-lg-start mt-4 pt-2">
             <button type="submit" class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Belum Memiliki Akun? <a href="/auth/register"
+            <p class="small fw-bold mt-2 pt-1 mb-0">Belum Memiliki Akun? <a href="/auth/register/index"
                 class="link-danger">Register</a></p>
           </div>
 

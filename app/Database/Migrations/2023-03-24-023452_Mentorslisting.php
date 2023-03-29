@@ -13,8 +13,10 @@ class Mentorslisting extends Migration
             'uuid' => ['type' => 'VARCHAR', 'constraint' => 128],
 
             //Login/Register
-            'username' => ['type' => 'VARCHAR','constraint' => 64,],
+            'email' => ['type' => 'VARCHAR','constraint' => 64,],
             'password' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
+            'role' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
+            'is_active' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],
 
             //Items
             'gambar' => ['type' => 'VARCHAR', 'constraint' => 64,'null' => true,],

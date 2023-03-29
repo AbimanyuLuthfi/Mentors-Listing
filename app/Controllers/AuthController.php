@@ -3,7 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\AuthModel;
+use App\Models\MentorsModel;
+use Ramsey\Uuid\Uuid;
 
 class AuthController extends BaseController
 {
@@ -27,10 +28,11 @@ class AuthController extends BaseController
      * POST : auth/register/process
      * Function Process Register
      */
-    public function auth_account_create()
+    public function auth_account_create_post()
     {
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
+        $nama = $this->request->getVar('nama');
         
         $rules = [
             'email'         => ['rules' => 'required|max_length[50]|valid_email|is_unique[mentors.email]',
@@ -40,7 +42,7 @@ class AuthController extends BaseController
                                     'max_length' => '{field} Maximal 50 Karakter!',
                                     ],
                                 ],
-            'name'         => ['rules' => 'required|min_length[4]|valid_email|is_unique[mentors.nama]',
+            'nama'         => ['rules' => 'required|min_length[4]|is_unique[mentors.nama]',
                                 'errors'=> [
                                     'required' => '{field} tidak boleh kosong!!!',                
                                     'is_unique' => 'Nama Sudah digunakan Sebelumnya!',
@@ -62,23 +64,26 @@ class AuthController extends BaseController
         ];
 
         if($this->validate($rules)){
-            $authModel = new AuthModel();
+            $mentorsModel = new MentorsModel();
+            $uuid4 = Uuid::uuid4();
+            $generateUUID = $uuid4;
             $data = [
+                'uuid' => $generateUUID,
                 'email'    => $email,
+                'password' => password_hash($password, PASSWORD_BCRYPT),
                 'role'     => 'member',
                 'is_active'     => 'not_active',
                 'gambar'     => '',
-                'nama'     => '',
+                'nama'     => $nama,
                 'bidang_keahlian'     => '',
                 'deskripsi_profil'     => '',
                 'waktu_tersedia'     => '',
-                'password' => password_hash($password, PASSWORD_BCRYPT)
             ];
-            $authModel->save($data);
-            return redirect()->to('/users/dashboard')->with('success', 'Anda Berhasil Membuat Akun Baru');
+            $mentorsModel->save($data);
+            return redirect()->to('/auth/login/index')->with('success', 'Anda Berhasil Membuat Akun Baru');
         } else {
             session()->setFlashdata('error', $this->validator->listerrors());
-            return redirect()->to('/auth/register/index')->with('error', 'Anda Gagal Membuat Akun Baru');
+            return redirect()->to('/auth/register/index');
         }
     }
 

@@ -35,7 +35,7 @@ $routes->group('auth', static function($routes){
     $routes->get('login/index', 'AuthController::login_index'); // login Page
     $routes->get('register/index', 'AuthController::register_index'); // register Page
     $routes->post('login/process', 'AuthController::'); // Login Process
-    $routes->post('register/process', 'AuthController::'); // register Process
+    $routes->post('register/process', 'AuthController::auth_account_create_post'); // register Process
     $routes->get('logout/process', 'AuthController::'); // register Process
 });
 

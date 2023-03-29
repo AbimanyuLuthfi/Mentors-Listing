@@ -18,8 +18,12 @@ class MentorsModel extends Model
     protected $allowedFields    = [
         'id',
         'uuid',
-        'username',
+
+        'email',
         'password',
+        'role',
+        'is_active',
+
         'gambar',
         'nama',
         'bidang_keahlian',
@@ -60,6 +64,8 @@ class MentorsModel extends Model
         $generateUUID = $uuid4;
         $data = [
             'uuid' => $generateUUID,
+            'role' => $generateUUID,
+            'is_active' => $generateUUID,
             'gambar' => $array_mentors['gambar'],
             'nama' => $array_mentors['nama'],
             'bidang_keahlian' => $array_mentors['bidang_keahlian'],
