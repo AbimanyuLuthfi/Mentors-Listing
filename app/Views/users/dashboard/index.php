@@ -12,7 +12,7 @@
                 Mentors Information
             </div>
             <div class="card-body">
-            <table id="datatablesSimple">
+            <table id="datatablesSimple3">
                     <thead>
                         <tr>
                             <th>Profile Picture</th>

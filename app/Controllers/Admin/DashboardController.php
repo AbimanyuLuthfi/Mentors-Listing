@@ -136,9 +136,9 @@ class DashboardController extends BaseController
 
             
             $mentorsModel->where('uuid', $mentors_uuid)->set($updateMentors)->update();
-            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil update item');
+            return redirect()->to('/dashboard/index')->with('success', 'Berhasil update item');
         } else {
-            return redirect()->to('/admin/dashboard')->with('errors', 'Gagal update item');
+            return redirect()->to('/dashboard/index')->with('errors', 'Gagal update item');
         }
     }
 

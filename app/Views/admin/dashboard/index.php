@@ -54,9 +54,11 @@
                             <tr>
                                 <th>Profile Picture</th>
                                 <th>Nama</th>
+                                <th>Email</th>
                                 <th>Bidang Keahlian</th>
                                 <th>Deskripsi Profile</th>
                                 <th>Hari & Waktu Tersedia</th>
+                                <th>Active</th>
                                 <th>Information</th>
                             </tr>
                         </thead>
@@ -67,9 +69,11 @@
                             <tr> 
                                     <td><img src="<?= "/uploads/".$data['gambar']; ?>" height="100px" width="100" alt="gambar"></td>
                                     <td><?= $data['nama'] ?></td>
+                                    <td><?= $data['email'] ?></td>
                                     <td><?= $data['bidang_keahlian'] ?></td>
                                     <td><?= $data['deskripsi_profil'] ?></td>
                                     <td><?= $data['waktu_tersedia'] ?></td>
+                                    <td><?= $data['is_active'] ?></td>
                                     <td>
                                     <a 
                                         type="button" class="btn btn-warning"
@@ -105,6 +109,7 @@
                                 <th>Nama</th>
                                 <th>Role</th>
                                 <th>Email</th>
+                                <th>Active</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
                                 <th>Action</th>
@@ -118,6 +123,7 @@
                                     <td><?= $data['nama'] ?></td>
                                     <td><?= $data['role'] ?></td>
                                     <td><?= $data['email'] ?></td>
+                                    <td><?= $data['is_active'] ?></td>
                                     <td><?= $data['created_at'] ?></td>
                                     <td><?= $data['updated_at'] ?></td>
                                     <td>
