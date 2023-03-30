@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Finanza - Financial Services Website Template</title>
+    <title><?= $title ?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -47,8 +47,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">Detail Mentor</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/auth/login/index" class="nav-item nav-link">Detail Mentor</a>
                 </div>
             </div>
         </nav>

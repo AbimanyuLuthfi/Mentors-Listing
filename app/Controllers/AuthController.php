@@ -8,17 +8,44 @@ use Ramsey\Uuid\Uuid;
 
 class AuthController extends BaseController
 {
-    // public function __construct(){
-    //     helper('form');
-    // }
+    /**
+     * GET : auth/login/index
+     * Login Page
+     */
     public function login_view()
     {
-        return view('login');
+        $data = [
+            'title' => 'Login | Mentors Listing'
+        ];
+        return view('login', $data);
     }
-    public function login_homepage()
+
+    /**
+     * GET : auth/register/index
+     * Register Page
+     */
+    public function register_index()
     {
-        return view('homepage');
+        $data = [
+            'title' => 'Login | Mentors Listing'
+        ];
+        return view('register', $data);
     }
+    /**
+     * GET : /
+     * Homepage
+     */
+    public function homepage()
+    {
+        $data = [
+            'title' => 'Homepage | Mentors Listing'
+        ];
+        return view('homepage', $data);
+    }
+    /**
+     * GET : /dashboard/index
+     * Dashboard Page
+     */
     public function login_index()
     {
         $mentorsModel = new MentorsModel ();
@@ -37,14 +64,6 @@ class AuthController extends BaseController
             'data_mentor' => $getMentor,
         ];
         return view('dashboard', $data);
-    }
-    public function register_index()
-    {
-        return view('register');
-    }
-
-    public function authentication(){
-        echo("lanjut login cuy");
     }
 
     /*
@@ -110,6 +129,10 @@ class AuthController extends BaseController
         }
     }
 
+    /**
+     * GET : /
+     * Homepage
+     */
     public function validation_account() {
         $session = session();   
         $mentorsModel = new MentorsModel();
@@ -118,38 +141,38 @@ class AuthController extends BaseController
 
         $auth = $mentorsModel->where('email', $email)->first();
 
-       if(($auth)){
-        if($auth['is_active'] == "active"){
-            $pass = $auth['password'];
-            $authenticatePassword = password_verify($password, $pass);
-            if($authenticatePassword == true){
-                $ses_data = [
-                    'id' => $auth['id'],
-                    'uuid' => $auth['uuid'],
-                    'email' => $auth['email'],
-                    'role' => $auth['role'],
-                    'is_active' => $auth['is_active'],
-                    'gambar' => $auth['gambar'],
-                    'nama' => $auth['nama'],
-                    'bidang_keahlian' => $auth['bidang_keahlian'],
-                    'deskripsi_profil' => $auth['deskripsi_profil'],
-                    'waktu_tersedia' => $auth['waktu_tersedia'],
-                    'isLoggedIn' => TRUE
-                ];
-                $session->set($ses_data);
-                return redirect()->to('/dashboard/index')->with('success', 'Berhasil Login');
-            } else {
-                $session->setFlashdata('msg', 'Password is incorrect.');
-                return redirect()->to('/auth/login/index')->withInput()->with('msg', 'Password Anda Salah');
-            }
+            if(($auth)){
+                if($auth['is_active'] == "active"){
+                    $pass = $auth['password'];
+                    $authenticatePassword = password_verify($password, $pass);
+                    if($authenticatePassword == true){
+                        $ses_data = [
+                            'id' => $auth['id'],
+                            'uuid' => $auth['uuid'],
+                            'email' => $auth['email'],
+                            'role' => $auth['role'],
+                            'is_active' => $auth['is_active'],
+                            'gambar' => $auth['gambar'],
+                            'nama' => $auth['nama'],
+                            'bidang_keahlian' => $auth['bidang_keahlian'],
+                            'deskripsi_profil' => $auth['deskripsi_profil'],
+                            'waktu_tersedia' => $auth['waktu_tersedia'],
+                            'isLoggedIn' => TRUE
+                        ];
+                        $session->set($ses_data);
+                        return redirect()->to('/dashboard/index')->with('success', 'Berhasil Login');
+                    } else {
+                        $session->setFlashdata('msg', 'Password is incorrect.');
+                        return redirect()->to('/auth/login/index')->withInput()->with('msg', 'Password Anda Salah');
+                    }
+                } else {
+                    $session->setFlashdata('msg', 'Email Anda Belum Aktif');
+                    return redirect()->to('/auth/login/index')->with('msg', 'Email Anda Belum Aktif');
+                }
         } else {
-            $session->setFlashdata('msg', 'Email Anda Belum Aktif');
-            return redirect()->to('/auth/login/index')->with('msg', 'Email Anda Belum Aktif');
+            $session->setFlashdata('msg', 'Akun Tidak Ditemukan');
+            return redirect()->to('/auth/login/index')->with('msg', 'Akun Tidak Ditemukan');
         }
-       } else {
-        $session->setFlashdata('msg', 'Akun Tidak Ditemukan');
-        return redirect()->to('/auth/login/index')->with('msg', 'Akun Tidak Ditemukan');
-    }
     }
 
     /*

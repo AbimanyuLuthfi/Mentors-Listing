@@ -31,7 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // Homepage
-$routes->get('/', 'AuthController::login_homepage'); // Dashboard Login Page
+$routes->get('/', 'AuthController::homepage'); // Dashboard Login Page
 
 //  Authentication
 $routes->group('auth', static function($routes){
