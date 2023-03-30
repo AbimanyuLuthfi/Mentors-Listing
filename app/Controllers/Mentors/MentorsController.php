@@ -19,4 +19,15 @@ class MentorsController extends BaseController
         return view('mentors/dashboard/index', $viewData);
     }
 
+    public function edit_account() {
+        $mentorsModel = new MentorsModel();
+        $getItems = $mentorsModel->getAllItem();
+        $data = [
+            'title' => 'Mentors Personal Account',
+            'head' => 'Mentors Personal Account',
+            'mentors' => '$getItems',
+        ];
+        return view('mentors/dashboard/edit-accounts', $data);
+    }
+
 }

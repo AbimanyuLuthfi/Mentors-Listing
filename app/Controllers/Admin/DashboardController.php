@@ -112,6 +112,8 @@ class DashboardController extends BaseController
         $bidang_keahlian = $this->request->getVar('bidang_keahlian');
         $deskripsi_profil = $this->request->getVar('deskripsi_profil');
         $waktu_tersedia = $this->request->getVar('waktu_tersedia');
+        $role= $this->request->getVar('role');
+        $is_active = $this->request->getVar('is_active');
         
         $mentorsModel = new MentorsModel();
         $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
@@ -121,6 +123,8 @@ class DashboardController extends BaseController
                 'bidang_keahlian' => $bidang_keahlian,
                 'deskripsi_profil' => $deskripsi_profil,
                 'waktu_tersedia' => $waktu_tersedia,
+                'role' => $role,
+                'is_active' => $is_active,
             ];
 
             if($gambar->isValid() && !$gambar->hasMoved()) {

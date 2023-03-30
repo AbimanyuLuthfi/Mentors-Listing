@@ -33,9 +33,26 @@
                             <label for="waktu_tersedia">Waktu Tersedia</label>
                             <input class="form-control" type="text" value="<?= esc($mentors['waktu_tersedia']) ?>"  name="waktu_tersedia" />
                         </div>
+                        <div class="form-group pb-2 pt-2">
+                            <label for="role">Role</label>
+                            <select name="role" id="role">
+                                <option><?= esc($mentors['role']) ?></option>
+                                <option value="admin">Admin</option>
+                                <option value="mentor">Mentor</option>
+                                <option value="user">User</option>
+                            </select>
+                        </div>
+                        <div class="form-group pb-2 pt-2">
+                            <label for="is_active">Acitvate</label>
+                            <select name="is_active" id="is_active">
+                                <option><?= esc($mentors['is_active']) ?></option>
+                                <option value="active">active</option>
+                                <option value="not_active">not_active</option>
+                            </select>
+                        </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-warning">Submit</button>
-                            <a href="/admin/dashboard" class="btn btn-primary">Back</a>
+                            <a href="/dashboard/index" class="btn btn-primary">Back</a>
                         </div>
                     </form>
                 </div>

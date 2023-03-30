@@ -14,7 +14,7 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/mentors">Personal Data</a>
+                        <a class="nav-link" href="/mentors/personal/account">Personal Data</a>
 
                     </nav>
                 </div>
