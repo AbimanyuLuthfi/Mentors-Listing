@@ -67,7 +67,8 @@ $routes->group('users', static function($routes){
 // Mentors
 $routes->group('mentors', static function($routes){
     $routes->get('dashboard', 'Mentors\MentorsController::index');
-    $routes->get('personal/account', 'Mentors\MentorsController::edit_account');
+    $routes->get('personal/account', 'Mentors\MentorsController::edit_account_page');
+    $routes->post('(:any)/update/post', 'Mentors\MentorsController::update_account/$1');
 });
 /*
  * --------------------------------------------------------------------

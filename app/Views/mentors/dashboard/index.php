@@ -6,10 +6,13 @@
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-info text-white mb-4">
-                        <div class="card-body"><h5>Welcome <?= session('email'); ?><h5></div>
+                        <div class="card-body">
+                            <h5><?= session('nama');?> (<?= session('role');?>)</h5>
+                            <h5 class="text-dark"><?= session('email');?></h5>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>      
             <!-- <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Mentors Information</li>
             </ol> -->
