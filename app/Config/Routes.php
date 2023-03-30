@@ -30,6 +30,9 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+// Homepage
+$routes->get('/', 'AuthController::login_homepage'); // Dashboard Login Page
+
 //  Authentication
 $routes->group('auth', static function($routes){
     $routes->get('login/index', 'AuthController::login_view'); // login Page

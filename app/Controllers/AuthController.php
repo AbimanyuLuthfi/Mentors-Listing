@@ -15,6 +15,10 @@ class AuthController extends BaseController
     {
         return view('login');
     }
+    public function login_homepage()
+    {
+        return view('homepage');
+    }
     public function login_index()
     {
         $mentorsModel = new MentorsModel ();
