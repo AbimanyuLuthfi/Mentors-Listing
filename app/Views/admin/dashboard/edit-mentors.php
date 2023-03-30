@@ -18,6 +18,10 @@
                             <input type="file" name="gambar"/><?= esc($mentors['gambar']) ?></td>
                         </div>
                         <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="text" value="<?= esc($mentors['email']) ?>" name="email" />
+                        </div>
+                        <div class="form-group">
                             <label for="nama">Nama</label>
                             <input class="form-control" type="text" value="<?= esc($mentors['nama']) ?>" name="nama" />
                         </div>

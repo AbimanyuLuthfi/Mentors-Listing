@@ -4,13 +4,12 @@
             <h1 class="mt-4">Admin Dashboard</h1>
             <br>
             <div class="row">
-                <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-6">
                     <div class="card bg-info text-white mb-4">
-                        <div class="card-body"><h5>Welcome <?= session('email'); ?><h5></div>
-                        <!-- <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div> -->
+                        <div class="card-body">
+                            <h5><?= session('nama');?> (<?= session('role');?>)</h5>
+                            <h5 class="text-dark"><?= session('email');?></h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -22,7 +21,7 @@
                     <a type="button" href="/admin/add/mentors" class="btn btn-info">Add</a>
                 </div>
                 <div class="card-body">
-                    <table id="datatablesSimple1">
+                    <table id="datatablesSimple1" class="table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Profile Picture</th>
@@ -31,6 +30,7 @@
                                 <th>Bidang Keahlian</th>
                                 <th>Deskripsi Profile</th>
                                 <th>Hari & Waktu Tersedia</th>
+                                <th>Role</th>
                                 <th>Active</th>
                                 <th>Information</th>
                             </tr>
@@ -46,6 +46,7 @@
                                     <td><?= $data['bidang_keahlian'] ?></td>
                                     <td><?= $data['deskripsi_profil'] ?></td>
                                     <td><?= $data['waktu_tersedia'] ?></td>
+                                    <td><?= $data['role'] ?></td>
                                     <td><?= $data['is_active'] ?></td>
                                     <td>
                                     <a 
