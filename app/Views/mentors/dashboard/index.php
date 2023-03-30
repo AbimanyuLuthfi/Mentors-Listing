@@ -2,11 +2,19 @@
     <main>
         <div class="container-fluid px-4">
             <h1 class="mt-4">Mentors Dashboard</h1>
-            <ol class="breadcrumb mb-4">
+            <br>
+            <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-info text-white mb-4">
+                        <div class="card-body"><h5>Welcome <?= session('email'); ?><h5></div>
+                    </div>
+                </div>
+            </div>
+            <!-- <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Mentors Information</li>
-            </ol>
+            </ol> -->
             <div class="card mb-4">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-info text-white">
                     <i class="fas fa-table me-1"></i>
                     Mentors Information
                 </div>

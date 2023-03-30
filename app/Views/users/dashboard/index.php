@@ -1,11 +1,17 @@
 <div id="layoutSidenav_content">
 <main>
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Dashboard User</h1>
-        <h1 class="mt-4"><?= session('email'); ?></h1>
-        <ol class="breadcrumb mb-4">
+        <h1 class="mt-4">Dashboard User</h1><br>
+        <div class="row">
+                <div class="col-xl-3 col-md-6">
+                    <div class="card bg-info text-white mb-4">
+                        <div class="card-body"><h5>Welcome <?= session('email'); ?><h5></div>
+                    </div>
+                </div>
+            </div>
+        <!-- <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active text-dark">Mentors Information</li>
-        </ol>
+        </ol> -->
         <div class="card mb-4">
             <div class="card-header bg-info text-white">
                 <i class="fas fa-table me-1"></i>
