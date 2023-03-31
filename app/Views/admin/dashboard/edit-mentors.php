@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input class="form-control" type="text" value="<?= esc($mentors['email']) ?>" name="email" />
+                            <input class="form-control" type="email" value="<?= esc($mentors['email']) ?>" name="email" />
                         </div>
                         <div class="form-group">
                             <label for="nama">Nama</label>

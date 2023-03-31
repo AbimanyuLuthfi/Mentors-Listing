@@ -22,7 +22,10 @@
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
 
             <!-- Navbar-->
-            <a class="btn btn-danger ms-auto" href="/auth/logout/process">Logout</a>
+            <!-- Button trigger logout modal -->
+            <button type="button" class="btn btn-danger ms-auto" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                Logout
+            </button>
         </nav>
         <div id="layoutSidenav">
             
@@ -66,4 +69,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     </body>
+
+<!-- Modal Logout-->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Are u sure want to logout??</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Click "Logout" Button If You Want To Logout
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                <a  href="/auth/logout/process" type="button" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
 </html>

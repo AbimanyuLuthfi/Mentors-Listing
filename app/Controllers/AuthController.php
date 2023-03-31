@@ -145,7 +145,7 @@ class AuthController extends BaseController
                 if($auth['is_active'] == "active"){
                     $pass = $auth['password'];
                     $authenticatePassword = password_verify($password, $pass);
-                    if($authenticatePassword == true){
+                    if($authenticatePassword == true){                           
                         $ses_data = [
                             'id' => $auth['id'],
                             'uuid' => $auth['uuid'],

@@ -25,7 +25,9 @@ class Admin implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        //
+        if(session()->get('isLoggedIn') == false){
+            return redirect()->to('auth/login/index')->with('error', 'Anda Belum Login');
+        }
     }
 
     /**
@@ -42,6 +44,11 @@ class Admin implements FilterInterface
      */
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
-        //
+            if(session()->get('role') == "admin"){
+                return redirect()->to('/dashboard/index')->with('Success', 'Anda Login Sebagai Admin');
+            } else {
+            session()->setFlashdata('pesan', 'Anda Bukan Admin');
+            return redirect()->back();
+        }
     }
 }

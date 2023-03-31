@@ -31,15 +31,15 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 // Homepage
-$routes->get('/', 'AuthController::homepage'); // Dashboard Login Page
+$routes->get('/', 'AuthController::homepage'); // Homepage
 
 //  Authentication
 $routes->group('auth', static function($routes){
     $routes->get('login/index', 'AuthController::login_view'); // login Page
     $routes->get('register/index', 'AuthController::register_index'); // register Page
     $routes->post('login/process', 'AuthController::validation_account'); // Login Process
-    $routes->post('register/process', 'AuthController::auth_account_create_post'); // register Process
-    $routes->get('logout/process', 'AuthController::logout_index'); // register Process
+    $routes->post('register/process', 'AuthController::auth_account_create_post'); // Register Process
+    $routes->get('logout/process', 'AuthController::logout_index'); // Logout Process
 });
 
 // Dashboard
@@ -48,7 +48,7 @@ $routes->group('dashboard', static function($routes){
 });
 
 // Admin
-$routes->group('admin', static function($routes){
+$routes->group('admin',['filter' => 'Admin'], static function($routes){
     $routes->get('dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
     $routes->post('dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
     $routes->get('add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
@@ -59,13 +59,13 @@ $routes->group('admin', static function($routes){
 });
 
 // User
-$routes->group('users', static function($routes){
+$routes->group('users',['filter' => 'User'], static function($routes){
     $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
     $routes->get('detail/mentors/(:any)', 'Users\DashboardController::users_mentors_listing_detail_index/$1');
 });
 
 // Mentors
-$routes->group('mentors', static function($routes){
+$routes->group('mentors',['filter' => 'Mentor'], static function($routes){
     $routes->get('dashboard', 'Mentors\MentorsController::index');
     $routes->get('personal/account', 'Mentors\MentorsController::edit_account_page');
     $routes->post('(:any)/update/post', 'Mentors\MentorsController::update_account/$1');

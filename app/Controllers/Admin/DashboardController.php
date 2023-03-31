@@ -109,6 +109,7 @@ class DashboardController extends BaseController
     public function	admin_mentors_listing_update($mentors_uuid) {
         $gambar = $this->request->getFile('gambar');
         $nama = $this->request->getVar('nama');
+        $email = $this->request->getVar('email');
         $bidang_keahlian = $this->request->getVar('bidang_keahlian');
         $deskripsi_profil = $this->request->getVar('deskripsi_profil');
         $waktu_tersedia = $this->request->getVar('waktu_tersedia');
@@ -120,6 +121,7 @@ class DashboardController extends BaseController
         if(!empty($getItems)) {
             $updateMentors =[
                 'nama' => $nama,
+                'email' => $email,
                 'bidang_keahlian' => $bidang_keahlian,
                 'deskripsi_profil' => $deskripsi_profil,
                 'waktu_tersedia' => $waktu_tersedia,
@@ -155,9 +157,9 @@ class DashboardController extends BaseController
         $getItems = $mentorsModel->where('uuid', $mentors_uuid)->first();
         if(!empty($getItems)){
             $mentorsModel->where('uuid', $mentors_uuid)->delete();
-            return redirect()->to('/admin/dashboard')->with('success', 'Berhasil Menghapus Data');
+            return redirect()->to('/dashboard/index')->with('success', 'Berhasil Menghapus Data');
         }
-        else return redirect()->to('/admin/dashboard')->with('success', 'Gagal Menghapus Data');
+        else return redirect()->to('/dashboard/index')->with('success', 'Gagal Menghapus Data');
     }
 
     public function edit($id){
