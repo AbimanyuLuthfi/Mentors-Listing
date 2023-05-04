@@ -48,7 +48,7 @@ $routes->group('dashboard', static function($routes){
 });
 
 // Admin
-$routes->group('admin',['filter' => 'Admin'], static function($routes){
+$routes->group('admin', static function($routes){
     $routes->get('dashboard', 'Admin\DashboardController::admin_mentors_listing_index');
     $routes->post('dashboard', 'Admin\DashboardController::admin_mentors_listing_index'); // Login For Admin
     $routes->get('add/mentors', 'Admin\DashboardController::admin_mentors_listing_create_index'); // Add Mentors View Page
@@ -59,17 +59,36 @@ $routes->group('admin',['filter' => 'Admin'], static function($routes){
 });
 
 // User
-$routes->group('users',['filter' => 'User'], static function($routes){
+$routes->group('users', static function($routes){
     $routes->get('dashboard', 'Users\DashboardController::users_mentors_listing_index');
     $routes->get('detail/mentors/(:any)', 'Users\DashboardController::users_mentors_listing_detail_index/$1');
 });
 
 // Mentors
-$routes->group('mentors',['filter' => 'Mentor'], static function($routes){
+$routes->group('mentors', static function($routes){
     $routes->get('dashboard', 'Mentors\MentorsController::index');
     $routes->get('personal/account', 'Mentors\MentorsController::edit_account_page');
     $routes->post('(:any)/update/post', 'Mentors\MentorsController::update_account/$1');
 });
+
+//API TESTING
+//Admin
+$routes->get('admin/dashboard/datajson', 'Admin\APIController::admin_mentors_listing_index');
+$routes->get('update/post/(:any)/datajson', 'Admin\APIController::admin_mentors_listing_update_index/$1'); // Update Mentors Information View Page
+$routes->post('admin/(:any)/update/post/datajson', 'Admin\APIController::admin_mentors_listing_update/$1'); // Update
+$routes->get('admin/(:any)/delete/datajson', 'Admin\APIController::admin_mentors_listing_delete/$1'); // Delete Mentors
+
+//Authentication
+$routes->post('auth/register/process/datajson', 'APIAuthController::auth_account_create_post'); //register process
+$routes->post('login/process/datajson', 'APIAuthController::validation_account'); // Login Process
+
+//Mentors
+$routes->get('mentors/dashboard/datajson', 'Mentors\APIMentorsController::index');
+
+//User
+$routes->get('users/dashboard/datajson', 'Users\APIDashboardController::users_mentors_listing_index');
+$routes->get('detail/mentors/(:any)/datajson', 'Users\APIDashboardController::users_mentors_listing_detail_index/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

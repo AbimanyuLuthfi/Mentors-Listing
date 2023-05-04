@@ -15,7 +15,7 @@
                                 <h4 class="card-title"><?= $data['bidang_keahlian'] ?></h4>
                                 <h5 class="card-title"><?= $data['waktu_tersedia'] ?></h5>
                                 <p class="card-text"><?= $data['deskripsi_profil'] ?></p>
-                                <a href="/users/dashboard" class="btn btn-primary">Back</a>
+                                <a href="/dashboard/index" class="btn btn-primary">Back</a>
                             </div>
                         </div>
                     </div>

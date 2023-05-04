@@ -55,3 +55,5 @@
                 </main>
                 
 <?= $this->endSection(); ?>
+
+<img src="<?= "/uploads/".$_SESSION['gambar']; ?>" class="rounded-circle pb-2" height="120px" width="120" alt="gambar">

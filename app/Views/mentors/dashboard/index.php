@@ -7,7 +7,7 @@
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-info text-white mb-4">
                         <div class="card-body">
-                            <img src="<?= "/uploads/".$_SESSION['gambar']; ?>" class="rounded-circle pb-2" height="120px" width="120" alt="gambar">
+                            
                             <h5><?= session('nama');?> (<?= session('role');?>)</h5>
                             <h5><?= session('bidang_keahlian');?></h5>
                             <h5 class="text-dark"><?= session('email');?></h5>

@@ -5,7 +5,7 @@ namespace App\Controllers\Mentors;
 use App\Controllers\BaseController;
 use App\Models\MentorsModel;
 
-class MentorsController extends BaseController
+class APIMentorsController extends BaseController
 {
     public function index()
     {
@@ -17,9 +17,8 @@ class MentorsController extends BaseController
             'head' => 'Mentors Listing',
             'array_mentors' => $getItems,
         ];
-        return view('mentors/dashboard/index', $viewData);
+        return $this->response->setJSON($viewData);
     }
-
     public function edit_account_page() {
         $mentorsModel = new MentorsModel();
         $dataMentor = $mentorsModel
