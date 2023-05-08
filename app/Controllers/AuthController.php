@@ -183,5 +183,4 @@ class AuthController extends BaseController
         $this->session->destroy();
         return redirect()->to('/auth/login/index');
     }
-
 }

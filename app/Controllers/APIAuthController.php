@@ -140,6 +140,15 @@ class APIAuthController extends BaseController
         $mentorsModel = new MentorsModel();
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
+        $key = getenv("JWT_SECRET");
+        $iat = time();
+        $exp = $iat + (60*60);
+        $payload = [
+            'iss' => 'ci4-jwt',
+            'sub' => 'logintoken',
+            'iat' => $iat,
+            'exp' => $exp
+        ];
 
         $auth = $mentorsModel->where('email', $email)->first();
 
